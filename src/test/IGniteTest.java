@@ -34,7 +34,7 @@ import org.apache.ignite.lang.IgniteBiPredicate;
 
 /**
  * IGnite core 依赖javax.cache1.0.0\org.jetbrains13.0\org.gridgain1.0.0
- * @author hisense
+ * @author 
  */
 public class IGniteTest {
     /***
@@ -66,19 +66,19 @@ public class IGniteTest {
             if (i%1000 == 0)
             {
                 
-                pst.setString(2, "王芳");
+                pst.setString(2, "xxx");
                 pst.executeBatch();//批量执行预定义参数
                 pst.clearBatch();//清除缓存
             }
             else
-                pst.setString(2, "王宝山");
+                pst.setString(2, "yyy");
         }
         pst.executeBatch();
        
         System.out.print("一百万数据插入时间：" + (System.currentTimeMillis() - curTime));
-        //sta.executeUpdate("INSERT INTO person (id, name, city_id) VALUES (2, '王芳', 2)");
+        //sta.executeUpdate("INSERT INTO person (id, name, city_id) VALUES (2, 'xxx', 2)");
         curTime = System.currentTimeMillis();
-        ResultSet rs = sta.executeQuery("select name from person where name = '王宝山'");
+        ResultSet rs = sta.executeQuery("select name from person where name = 'yyy'");
         while (rs.next()) {
             String name = rs.getString(1);      
         }
@@ -124,15 +124,15 @@ public class IGniteTest {
             //ps.setCity_id(5);
             if (i%1000 == 0)
             {                
-                ps.setName("王芳");   
-                //mp.put("name", "王芳");
+                ps.setName("xxx");   
+                //mp.put("name", "xxx");
                 //mp.put("city_id", 5);
                 ps.setCity_id(5);
             }
             else
             {
-                ps.setName("王宝山");
-                //mp.put("name", "王宝山");
+                ps.setName("yyy");
+                //mp.put("name", "yyy");
                 //mp.put("city_id", 6);
                 ps.setCity_id(6);
             }
@@ -152,7 +152,7 @@ public class IGniteTest {
         System.out.print("十万数据读取时间：" + (System.currentTimeMillis() - curTime));
 
         SqlQuery<Integer, Person> sql = new SqlQuery(Person.class, "name = ?");
-        sql.setArgs("王芳");
+        sql.setArgs("xxx");
         List<Entry<Integer, Person>> cursor = cache.query(sql).getAll();
         if (cursor != null)
         {
@@ -171,7 +171,7 @@ public class IGniteTest {
 //                System.out.println("personName=" + row.get(0));
 //            }
 
-//        try (QueryCursor<Person> cursor = cache.query(new ScanQuery((k, p) -> p.getName() = "王芳"))) {
+//        try (QueryCursor<Person> cursor = cache.query(new ScanQuery((k, p) -> p.getName() = "xxx"))) {
 //          for (Person p : cursor)
 //            System.out.println(p.getName());
 //        }
@@ -181,7 +181,7 @@ public class IGniteTest {
 //        filter = new IgniteBiPredicate<Integer, Person>() {
 //            @Override
 //            public boolean apply(Integer key, Person p) {
-//                return p.getName().equals("王芳");
+//                return p.getName().equals("xxx");
 //            }
 //        };
 //      try (QueryCursor<Person> cursor = cache.query(new ScanQuery(filter))) {
