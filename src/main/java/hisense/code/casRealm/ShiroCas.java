@@ -52,7 +52,7 @@ public class ShiroCas extends CasRealm {
      * 1、CAS认证 ,验证用户身份
      * 2、将用户基本信息设置到会话中
      */
-    protected final Map<String, List<String>> map = new HashMap<String, List<String>>();
+    protected final Map<String, Object> map = new HashMap<String, Object>();
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) {
 
         AuthenticationInfo authc = super.doGetAuthenticationInfo(token);

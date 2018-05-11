@@ -29,6 +29,10 @@
 	 sessionStorage.setItem('info',myName);
 	 sessionStorage.setItem('roles',myuserroles);
 	 sessionStorage.setItem('permissions',myuserpermissions);
+    //将后台json数据对象转成json字符串并存于H5的SessionStorage中
+    var myusermap=JSON.stringify(<%=session.getAttribute("mapinfo")%>);
+    alert(myusermap);
+    sessionStorage.setItem('usermap',myusermap);
 	</script>
 	${info}
 	欢迎你!

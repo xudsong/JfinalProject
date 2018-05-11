@@ -34,7 +34,7 @@ import org.apache.ignite.lang.IgniteBiPredicate;
 
 /**
  * IGnite core 依赖javax.cache1.0.0\org.jetbrains13.0\org.gridgain1.0.0
- * @author hisense
+ *
  */
 public class IGniteTest {
     /***
@@ -53,36 +53,36 @@ public class IGniteTest {
         Statement sta = conn.createStatement();
         //Query people with specific param using prepared statement
         PreparedStatement pst= conn.prepareStatement("INSERT INTO person (id, name, city_id) VALUES (?, ?, ?)");
-        sta.executeUpdate("DELETE FROM person");
-        //sta.executeUpdate("CREATE TABLE person (id LONG, name VARCHAR, city_id LONG, PRIMARY KEY(id)) WITH \"TEMPLATE=replicated\"");
-        long curTime = System.currentTimeMillis();
-        System.out.println(curTime);
-        //使用addBatch批量执行预定义模式的SQL
-        for(int i = 0; i < 1000000; i++)
-        {
-            pst.setInt(1, i);
-            pst.setInt(3, 2);
-            pst.addBatch();//添加一次预定义参数
-            if (i%1000 == 0)
-            {
-                
-                pst.setString(2, "王芳");
-                pst.executeBatch();//批量执行预定义参数
-                pst.clearBatch();//清除缓存
-            }
-            else
-                pst.setString(2, "王宝山");
-        }
-        pst.executeBatch();
+//        sta.executeUpdate("DELETE FROM person");
+//        //sta.executeUpdate("CREATE TABLE person (id LONG, name VARCHAR, city_id LONG, PRIMARY KEY(id)) WITH \"TEMPLATE=replicated\"");
+//        long curTime = System.currentTimeMillis();
+//        System.out.println(curTime);
+//        //使用addBatch批量执行预定义模式的SQL
+//        for(int i = 0; i < 1000000; i++)
+//        {
+//            pst.setInt(1, i);
+//            pst.setInt(3, 2);
+//            pst.addBatch();//添加一次预定义参数
+//            if (i%1000 == 0)
+//            {
+//
+//                pst.setString(2, "王芳");
+//                pst.executeBatch();//批量执行预定义参数
+//                pst.clearBatch();//清除缓存
+//            }
+//            else
+//                pst.setString(2, "王宝山");
+//        }
+//        pst.executeBatch();
        
-        System.out.print("一百万数据插入时间：" + (System.currentTimeMillis() - curTime));
-        //sta.executeUpdate("INSERT INTO person (id, name, city_id) VALUES (2, '王芳', 2)");
-        curTime = System.currentTimeMillis();
+//        System.out.print("一百万数据插入时间：" + (System.currentTimeMillis() - curTime));
+//        //sta.executeUpdate("INSERT INTO person (id, name, city_id) VALUES (2, '王芳', 2)");
+//        curTime = System.currentTimeMillis();
         ResultSet rs = sta.executeQuery("select name from person where name = '王宝山'");
         while (rs.next()) {
             String name = rs.getString(1);      
         }
-        System.out.print("一百万数据查询时间：" + (System.currentTimeMillis() - curTime));
+//        System.out.print("一百万数据查询时间：" + (System.currentTimeMillis() - curTime));
         rs.close();
         pst.close();
         sta.close();
